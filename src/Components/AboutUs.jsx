@@ -51,9 +51,9 @@ const AboutUs = () => {
         <div className="mt-12 text-center">
           <h3 className="text-2xl font-semibold text-gray-800">Join Us in Our Journey</h3>
           <p className="text-gray-600 mt-2">Be a part of the future of healthcare with MediCart.</p>
-          <button className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-300">
+          {/* <button className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-300">
             Contact Us
-          </button>
+          </button> */}
         </div>
       </div>
     </section>

@@ -171,7 +171,7 @@ const Shop = () => {
         {/* Sort by price */}
         <div className="mb-4">
           <button
-            className="px-4 py-2 bg-blue-500 text-white rounded mr-2"
+            className="px-4 py-2 bg-blue-600 text-white rounded mr-2"
             onClick={() => setSortByPrice(sortByPrice === 'asc' ? 'desc' : 'asc')}
           >
             Sort by Price ({sortByPrice === 'asc' ? 'Ascending' : 'Descending'})
@@ -215,7 +215,7 @@ const Shop = () => {
                     </button>
                     <button
                       onClick={() => handleShowDetails(item)}
-                      className="bg-blue-500 text-white px-4 py-2 w-20 rounded mt-2"
+                      className="bg-blue-600 text-white px-4 py-2 w-20 rounded mt-2"
                     >
                       Eye
                     </button>
@@ -230,13 +230,13 @@ const Shop = () => {
         <div className="flex justify-center mt-4 mb-4">
           <button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            className="px-4 py-2 bg-blue-500 text-white rounded mr-2"
+            className="px-4 py-2 bg-blue-600 text-white rounded mr-2"
           >
             Previous
           </button>
           <button
             onClick={() => setCurrentPage((prev) => prev + 1)}
-            className="px-4 py-2 bg-blue-500 text-white rounded"
+            className="px-4 py-2 bg-blue-600 text-white rounded"
           >
             Next
           </button>
