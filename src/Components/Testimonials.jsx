@@ -117,7 +117,7 @@ const Testimonials = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-teal-500 text-white font-medium py-2 rounded-lg hover:bg-teal-600 transition duration-200"
+                        className="w-full bg-blue-600  text-white font-medium py-2 rounded-lg hover:bg-blue-700  transition duration-200"
                     >
                         Submit Review
                     </button>
