@@ -86,7 +86,7 @@ const CategoryDetails = () => {
   };
 
   return (
-    <div className="container mx-auto mt-20">
+    <div className="container mx-auto mt-24">
       <ToastContainer></ToastContainer>
       <h1 className="text-2xl font-bold mt-12 mb-4 text-center">
         Medicines in Category: {category}
@@ -119,7 +119,7 @@ const CategoryDetails = () => {
                   {/* Eye Button to show details */}
                   <button
                     onClick={() => handleShowDetails(item)}
-                    className="bg-blue-500 text-white px-4 py-2 rounded mr-2 w-20 mb-2"
+                    className="bg-blue-600 text-white px-4 py-2 rounded mr-2 w-20 mb-2"
                   >
                     Eye
                   </button>
