@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';  // Import Toastify CSS
 
@@ -9,7 +10,7 @@ const ManageBannerAdvertise = () => {
     queryKey: ['manageMedicine'],
     queryFn: async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/advertisements`);
+        const response = await axios.get(`https://y-green-theta.vercel.app/advertisements`);
         return response.data;
       } catch (error) {
         toast.error('Failed to fetch medicines');
@@ -22,7 +23,7 @@ const ManageBannerAdvertise = () => {
   const toggleAdvertisement = async (advertisementId, currentStatus) => {
     try {
       const updatedStatus = currentStatus ? 'inactive' : 'active'; // Toggle status
-      const response = await axios.patch(`http://localhost:5000/advertisements/${advertisementId}`, {
+      const response = await axios.patch(`https://y-green-theta.vercel.app/advertisements/${advertisementId}`, {
         status: updatedStatus,
       });
 
@@ -39,6 +40,7 @@ const ManageBannerAdvertise = () => {
 
   return (
     <div>
+      <Helmet><title>MedCard | Manage Banner</title></Helmet>
       <h2 className="text-xl font-bold mb-4">Manage Banner Advertise</h2>
       <ToastContainer position="top-right" autoClose={3000} theme="colored" />
       

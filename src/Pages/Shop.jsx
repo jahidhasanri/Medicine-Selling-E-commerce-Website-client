@@ -11,7 +11,7 @@ import UseAdmin from '../hooks/UseAdmin';
 
 const fetchItems = async () => {
   try {
-    const { data } = await axios.get('http://localhost:5000/items');
+    const { data } = await axios.get('https://y-green-theta.vercel.app/items');
     return data;
   } catch (error) {
     throw new Error('Failed to fetch items');
@@ -86,7 +86,7 @@ const Shop = () => {
       };
 
       try {
-        const { data } = await axios.post('http://localhost:5000/cards', cartItem);
+        const { data } = await axios.post('https://y-green-theta.vercel.app/cards', cartItem);
         if (data) {
           await refetch();
           toast.success('Item added successfully to the cart');

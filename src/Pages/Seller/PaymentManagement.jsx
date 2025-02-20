@@ -2,10 +2,11 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import UseAxiosSecure from '../../hooks/UseAxiosSecure';
+import { Helmet } from 'react-helmet';
 
 const PaymentHistory = () => {
   const { user } = useContext(AuthContext);
@@ -19,7 +20,7 @@ const PaymentHistory = () => {
     queryFn: async () => {
       try {
         if (user?.email) {
-          const response = await axios.get(`http://localhost:5000/datas`);
+          const response = await axios.get(`https://y-green-theta.vercel.app/datas`);
           return response.data;
         } else {
           toast.error('User email is not available');
@@ -54,7 +55,7 @@ const PaymentHistory = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
-            const { data } = await axiosSecure.delete(`/cards/${user._id}`);
+            const { data } = await axiosSecure.delete(`/paymentDelete/${user._id}`);
             if (data.deletedCount > 0) {
               toast.success("User deleted successfully!");
               refetch(); // Refetching users data
@@ -78,12 +79,12 @@ const PaymentHistory = () => {
         if (newRole === selectedUser.status) return; // Don't update if the role is the same
         try {
           // Make the PATCH request to update the status of the card/medicine in the database
-          const { data } = await axios.patch(`http://localhost:5000/payment/${selectedUser._id}`, {
+          const { data } = await axios.patch(`https://y-green-theta.vercel.app/payment/${selectedUser._id}`, {
             status: newRole,
           });
           
           if (data.modifiedCount > 0) {
-            toast.success(`${selectedUser.name}'s status updated to ${newRole}.`);
+            toast.success(` status updated to ${newRole}.`);
             setIsModalOpen(false); // Close modal
             refetch(); // Refetching medicines data
           } else {
@@ -105,6 +106,8 @@ const PaymentHistory = () => {
 
   return (
     <div>
+      <ToastContainer></ToastContainer>
+      <Helmet><title>MedCard | Payment Management</title></Helmet>
       <h2 className='text-2xl font-bold mb-4'>Payment History</h2>
       {medicines.length === 0 ? (
         <p>No payment history available.</p>

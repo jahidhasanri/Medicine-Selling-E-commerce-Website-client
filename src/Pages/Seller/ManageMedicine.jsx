@@ -8,6 +8,7 @@ import { MdDeleteForever } from 'react-icons/md';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { imageupload } from '../../utils';
+import { Helmet } from 'react-helmet';
 
 const ManageMedicine = () => {
   const { user } = useContext(AuthContext);
@@ -19,7 +20,7 @@ const ManageMedicine = () => {
   const { data: medicines = [], refetch, isLoading } = useQuery({
     queryKey: ['manageMedicine', user?.email],
     queryFn: async () => {
-      const response = await axios.get(`http://localhost:5000/data/${user.email}`);
+      const response = await axios.get(`https://y-green-theta.vercel.app/data/${user.email}`);
       return response.data;
     },
   });
@@ -43,7 +44,7 @@ const ManageMedicine = () => {
     };
 
     try {
-      const { data } = await axios.post("http://localhost:5000/items", itemData);
+      const { data } = await axios.post("https://y-green-theta.vercel.app/items", itemData);
       if (data) {
         toast.success("Medicine added successfully");
         refetch();
@@ -72,9 +73,9 @@ const ManageMedicine = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await axios.delete(`http://localhost:5000/items/${id}`);
+        await axios.delete(`https://y-green-theta.vercel.app/items/${id}`);
+        refetch(); 
         toast.success("Item deleted successfully!");
-        refetch();
       }
     });
   };
@@ -86,6 +87,9 @@ const ManageMedicine = () => {
   return (
     <div className="container mx-auto pl-6">
       <ToastContainer />
+      <Helmet>
+        <title>MedCard | Manage Medicine</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-4 text-center">Manage Medicines</h2>
       <button 
         className="btn btn-primary mb-4"

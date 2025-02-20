@@ -66,7 +66,7 @@ const Register = () => {
       }
 
       toast.success('Registration successful!');
-      await axios.post(`http://localhost:5000/users/${email}`,info);
+      await axios.post(`https://y-green-theta.vercel.app/users/${email}`,info);
       setTimeout(() => {
         navigate('/');
       }, 1000);

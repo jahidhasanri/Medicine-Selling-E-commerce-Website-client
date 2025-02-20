@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 const fetchItems = async () => {
-  const { data } = await axios.get("http://localhost:5000/items");
+  const { data } = await axios.get("https://y-green-theta.vercel.app/items");
   return data;
 };
 

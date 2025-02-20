@@ -4,12 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import UseCard from "../UseCard";
 import { AuthContext } from "../Provider/AuthProvider";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
 
 // Function to fetch items from a specific category
 const fetchCategoryItems = async (category) => {
-  const { data } = await axios.get(`http://localhost:5000/items/${category}`);
+  const { data } = await axios.get(`https://y-green-theta.vercel.app/items/${category}`);
   return data;
 };
 
@@ -44,7 +44,7 @@ const CategoryDetails = () => {
       };
 
       try {
-        const { data } = await axios.post('http://localhost:5000/cards', cartItem);
+        const { data } = await axios.post('https://y-green-theta.vercel.app/cards', cartItem);
         if (data) {
           toast.success('Item added successfully to the cart');
           refetch(); // Trigger refetch to update the cart
@@ -87,7 +87,8 @@ const CategoryDetails = () => {
 
   return (
     <div className="container mx-auto mt-20">
-      <h1 className="text-2xl font-bold mb-4 text-center">
+      <ToastContainer></ToastContainer>
+      <h1 className="text-2xl font-bold mt-12 mb-4 text-center">
         Medicines in Category: {category}
       </h1>
 

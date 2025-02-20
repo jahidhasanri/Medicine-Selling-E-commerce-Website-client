@@ -22,7 +22,7 @@ const CheckOutForm = () => {
 
     useEffect(() => {
         if (totalPrice > 0) {
-            axios.post('http://localhost:5000/create-payment-intent', { price: totalPrice })
+            axios.post('https://y-green-theta.vercel.app/create-payment-intent', { price: totalPrice })
                 .then(res => {
                     setClientSecret(res.data.clientSecret);
                 })
@@ -91,9 +91,9 @@ const CheckOutForm = () => {
                     status: 'pending',
                 };
 
-                const res = await axios.post('http://localhost:5000/payment', payment);
+                const res = await axios.post('https://y-green-theta.vercel.app/payment', payment);
                 if(res?.data?.result?.insertedId){
-                    toast.success('taka paisi')
+                    toast.success('payment done')
                     navigate('/invoice')
                 }
             }

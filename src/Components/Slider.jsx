@@ -12,7 +12,7 @@ const SliderComponent = () => {
     queryKey: ['manageMedicine'],
     queryFn: async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/advertisements`);
+        const response = await axios.get(`https://y-green-theta.vercel.app/advertisements`);
         return response.data;
       } catch (error) {
         toast.error('Failed to fetch medicines');

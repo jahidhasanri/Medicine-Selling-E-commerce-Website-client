@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import UseAdmin from '../hooks/UseAdmin';
 import UseSeller from '../hooks/UseSeller';
+import { Helmet } from 'react-helmet';
 
 const Profile = () => {
     const { user } = useContext(AuthContext);
@@ -10,6 +11,7 @@ const Profile = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
+            <Helmet><title>MedCard | Profile</title></Helmet>
             <div className="bg-white shadow-lg rounded-2xl p-6 max-w-sm w-full text-center">
                 <img 
                     src={user?.photoURL || "https://via.placeholder.com/150"} 
@@ -18,7 +20,10 @@ const Profile = () => {
                 />
                 <h2 className='text-2xl text-green-400'>
                     {isAdmin ? (
+                        <>
                         <p>Admin</p>
+                        
+                        </>
                     ) : isseller ? (
                         <p>Seller</p>
                     ) : (

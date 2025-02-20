@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
 import UseAxiosSecure from "../../hooks/UseAxiosSecure";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const ManageUsers = () => {
   const { user } = useContext(AuthContext);
@@ -91,6 +92,7 @@ const ManageUsers = () => {
   return (
     <div>
       <ToastContainer />
+      <Helmet><title>MedCard | Manage Users</title></Helmet>
       <h2 className="text-xl font-bold mb-4">Manage Users ({users.length})</h2>
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">

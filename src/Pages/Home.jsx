@@ -5,6 +5,9 @@ import Category from '../Components/Category';
 import Discount from '../Components/Discount';
 import HealthTips from '../Components/HelathTips';
 import Testimonials from '../Components/Testimonials';
+import Newsletter from '../Components/Newsletter';
+import FAQs from '../Components/faqsData';
+import ContactSupport from '../Components/ContactSupport';
 
 
 const Home = () => {
@@ -16,8 +19,11 @@ const Home = () => {
             <Slider></Slider>
             <Category></Category>
             <Discount></Discount>
+            <Newsletter></Newsletter>
             <HealthTips></HealthTips>
             <Testimonials></Testimonials>
+            <ContactSupport></ContactSupport>
+            <FAQs></FAQs>
         </div>
     );
 };

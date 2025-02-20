@@ -7,6 +7,7 @@ import DataTable from 'react-data-table-component';
 import { CSVLink } from 'react-csv';
 import * as XLSX from 'xlsx';
 import { Document, Page, Text, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
+import { Helmet } from 'react-helmet';
 
 const SalesReport = () => {
     const { user } = useContext(AuthContext);
@@ -18,7 +19,7 @@ const SalesReport = () => {
         queryFn: async () => {
             try {
                 if (user?.email) {
-                    const response = await axios.get(`http://localhost:5000/datas`);
+                    const response = await axios.get(`https://y-green-theta.vercel.app/datas`);
                     return response.data;
                 } else {
                     toast.error('User email is not available');
@@ -113,6 +114,7 @@ const SalesReport = () => {
 
     return (
         <div>
+            <Helmet><title>MedCard | Sales Report</title></Helmet>
             {/* Date Range Filter */}
             <div className="filters">
                 <input

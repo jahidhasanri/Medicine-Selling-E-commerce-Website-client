@@ -4,6 +4,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { imageupload } from '../utils'; // Utility function for image upload
+import { Helmet } from 'react-helmet';
 
 const Update = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -43,6 +44,7 @@ const Update = () => {
   return (
     <div className="mt-20">
       <ToastContainer />
+      <Helmet><title>MedCard | Update profile</title></Helmet>
       <div className="card bg-base-100 w-full mt-5 max-w-sm shrink-0 shadow-2xl mx-auto">
         <form onSubmit={handleUpdate} className="card-body">
           <div className="form-control">

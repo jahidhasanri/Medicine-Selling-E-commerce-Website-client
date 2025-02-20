@@ -6,9 +6,10 @@ import { imageupload } from "../../utils";
 import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
+import { Helmet } from "react-helmet";
 
 const fetchCategories = async () => {
-  const { data } = await axios.get("http://localhost:5000/category");
+  const { data } = await axios.get("https://y-green-theta.vercel.app/category");
   return data;
 };
 
@@ -35,7 +36,7 @@ const ManageCategory = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/category",
+        "https://y-green-theta.vercel.app/category",
         itemData
       );
       if (data) {
@@ -64,7 +65,7 @@ const ManageCategory = () => {
 
     try {
       const { data } = await axios.put(
-        `http://localhost:5000/category/${selectedCategory._id}`,
+        `https://y-green-theta.vercel.app/category/${selectedCategory._id}`,
         updatedData
       );
       if (data.modifiedCount > 0) {
@@ -93,7 +94,7 @@ const ManageCategory = () => {
       if (result.isConfirmed) {
         try {
           const { data } = await axios.delete(
-            `http://localhost:5000/category/${id}`
+            `https://y-green-theta.vercel.app/category/${id}`
           );
           if (data.deletedCount > 0) {
             toast.success("Category deleted successfully");
@@ -115,6 +116,7 @@ const ManageCategory = () => {
   return (
     <div className="p-4">
       <ToastContainer position="top-right" autoClose={3000} />
+      <Helmet><title>MedCard | Manage Category</title></Helmet>
       <div className="container mx-auto">
         <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">
           Manage Categories ({categories.length})

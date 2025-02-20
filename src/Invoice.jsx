@@ -16,7 +16,7 @@ const Invoice = () => {
     queryFn: async () => {
       try {
         if (user?.email) {
-          const response = await axios.get(`http://localhost:5000/userPayment/${user.email}`);
+          const response = await axios.get(`https://y-green-theta.vercel.app/userPayment/${user.email}`);
           return response.data;
         } else {
           toast.error('User email is not available');
@@ -38,6 +38,7 @@ const Invoice = () => {
   if (isError) {
     return <p className="text-center text-red-500 mt-5">Error fetching payment history: {error?.message}</p>;
   }
+  console.log(payments);
 
   // Function to generate and download PDF
   const handleDownloadPDF = () => {

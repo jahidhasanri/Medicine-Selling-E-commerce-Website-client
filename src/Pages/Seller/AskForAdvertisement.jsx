@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet';
 
 const AskForAdvertisement = () => {
   const { user } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const AskForAdvertisement = () => {
     queryKey: ['manageMedicine', user?.email],
     queryFn: async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/data/${user.email}`);
+        const response = await axios.get(`https://y-green-theta.vercel.app/data/${user.email}`);
         return response.data;
       } catch (error) {
         toast.error('Failed to fetch medicines');
@@ -40,7 +41,7 @@ const AskForAdvertisement = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/advertisements', formData);
+      const response = await axios.post('https://y-green-theta.vercel.app/advertisements', formData);
       if (response.data.success) {
         toast.success(response.data.message);
       } else {
@@ -62,6 +63,7 @@ const AskForAdvertisement = () => {
   return (
     <div className="container mx-auto p-6">
       <ToastContainer></ToastContainer>
+      <Helmet><title>MedCard | Ask For Advertisements</title></Helmet>
       <h2 className="text-2xl font-bold text-center mb-6">Manage Advertisement Requests</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-300 text-sm sm:text-base">

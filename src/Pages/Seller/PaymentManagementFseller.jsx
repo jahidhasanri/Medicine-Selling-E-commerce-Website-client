@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Provider/AuthProvider';
+import { Helmet } from 'react-helmet';
 
 const PaymentManagementFseller = () => {
   const { user } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const PaymentManagementFseller = () => {
     queryFn: async () => {
       try {
         if (user?.email) {
-          const response = await axios.get(`http://localhost:5000/datas`);
+          const response = await axios.get(`https://y-green-theta.vercel.app/datas`);
           return response.data;
         } else {
           toast.error('User email is not available');
@@ -40,6 +41,9 @@ const PaymentManagementFseller = () => {
 
   return (
     <div className="container mx-auto mt-8">
+      <Helmet>
+        <title>MedCard | Payment manage for seller</title>
+      </Helmet>
       <h2 className="text-2xl font-bold mb-4 text-center">Seller's Payment History</h2>
       {userData.length > 0 ? (
         <div className="overflow-x-auto">
@@ -55,7 +59,7 @@ const PaymentManagementFseller = () => {
             <tbody>
               {userData.map((item) => (
                 <tr key={item._id} className="border-b border-gray-200 hover:bg-gray-100">
-                  <td className="py-3 px-6">{item?.item?.itemName || 'N/A'}</td>
+                  <td className="py-3 px-6">{item?.itemName || 'N/A'}</td>
                   <td className="py-3 px-6">${item.price || 'N/A'}</td>
                   <td className="py-3 px-6">{item.email || 'N/A'}</td>
                   <td className="py-3 px-6">{item.status || 'N/A'}</td>

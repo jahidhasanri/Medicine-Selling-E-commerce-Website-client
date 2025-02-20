@@ -108,7 +108,7 @@ npm run dev
 
 ### 6. **Access the Website:**
 - **Frontend:** `http://localhost:3000`
-- **Backend:** `http://localhost:5000`
+- **Backend:** `https://y-green-theta.vercel.app`
 
 ---
 

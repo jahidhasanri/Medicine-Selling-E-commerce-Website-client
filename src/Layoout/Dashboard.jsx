@@ -34,7 +34,7 @@ const Dashboard = () => {
   const handleSendRequest = async () => {
     try {
       const response = await axios.patch(
-        `http://localhost:5000/users/${user?.email}`
+        `https://y-green-theta.vercel.app/users/${user?.email}`
       );
 
       if (response.data.modifiedCount > 0) {
@@ -118,6 +118,11 @@ const Dashboard = () => {
             </>
           ) : isseller ? (
             <>
+              <li className="mb-5">
+                <NavLink to={"sellerHome"}>
+                  <FiShoppingCart /> Home
+                </NavLink>
+              </li>
               <li className="mb-5">
                 <NavLink to={"/dashboard/cart"}>
                   <FiShoppingCart /> My Cart

@@ -4,12 +4,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const fetchCategories = async () => {
-  const { data } = await axios.get("http://localhost:5000/category");
+  const { data } = await axios.get("https://y-green-theta.vercel.app/category");
   return data;
 };
 
 const fetchItems = async () => {
-  const { data } = await axios.get("http://localhost:5000/items");
+  const { data } = await axios.get("https://y-green-theta.vercel.app/items");
   return data;
 };
 

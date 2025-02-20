@@ -63,14 +63,22 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6">
           <NavLink to="/" className="text-white hover:text-gray-300">Home</NavLink>
-          <NavLink to="/shop" className="text-white hover:text-gray-300">Shop</NavLink>
+         
         
         
-          <button className="btn" onClick={handleCartClick}>
+          {
+            user?
+            <>
+            <NavLink to="/shop" className="text-white hover:text-gray-300">Shop</NavLink>
+            <button className="btn" onClick={handleCartClick}>
       <FiShoppingCart />
       <div className="badge badge-secondary">+{card.length}</div>
-    </button>
-          <div className="relative">
+    </button></>
+    :
+    ''
+          }
+          <NavLink to='/aboutus' className='text-white hover:text-gray-300' >About Us</NavLink>
+          {/* <div className="relative">
             <button onClick={toggleLanguageMenu} className="text-white">Languages</button>
             {isLanguageMenuOpen && (
               <div className="absolute right-0 mt-2 bg-white text-black rounded shadow-lg w-32">
@@ -81,7 +89,7 @@ const Navbar = () => {
                 </ul>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
 
         {/* Profile / Join Us */}

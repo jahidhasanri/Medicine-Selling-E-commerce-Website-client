@@ -35,7 +35,7 @@
     
 //     // e.target.reset(); 
 //     try {
-//         const { data } = await axios.post("http://localhost:5000/items", itemData);
+//         const { data } = await axios.post("https://y-green-theta.vercel.app/items", itemData);
       
 //         if (data) {
 //           toast.success("Food item added successfully");

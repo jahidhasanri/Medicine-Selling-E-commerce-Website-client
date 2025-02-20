@@ -1,21 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UseCard from "../UseCard";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
-//RIFAT
+import { Helmet } from "react-helmet";
+
 const Card = () => {
   const navigate = useNavigate();
   const [card, refetch] = UseCard();
 
   // State to manage quantities
-  const [quantities, setQuantities] = useState(
-    card.reduce((acc, item) => ({ ...acc, [item._id]: 1 }), {})
-  );
+  const [quantities, setQuantities] = useState({});
+
+  useEffect(() => {
+    const initialQuantities = card.reduce(
+      (acc, item) => ({ ...acc, [item._id]: 1 }),
+      {}
+    );
+    setQuantities(initialQuantities);
+  }, [card]);
 
   // Calculate total price based on quantity
   const totalPrice = card.reduce(
@@ -36,7 +43,7 @@ const Card = () => {
       if (result.isConfirmed) {
         try {
           const { data } = await axios.delete(
-            `http://localhost:5000/cards/${id}`
+            `https://y-green-theta.vercel.app/cards/${id}`
           );
           if (data.deletedCount > 0) {
             toast.success("Item deleted successfully!");
@@ -45,7 +52,7 @@ const Card = () => {
             toast.error("Failed to delete item!");
           }
         } catch (error) {
-          toast.error(error.response.data);
+          toast.error(error.response?.data?.message || "Error deleting item.");
         }
       }
     });
@@ -55,104 +62,63 @@ const Card = () => {
     setQuantities((prev) => {
       const currentQuantity = prev[id] || 1;
       if (currentQuantity < availableQuantity) {
-        // Increase quantity in state
         return { ...prev, [id]: currentQuantity + 1 };
       } else {
         toast.warning("You have reached the maximum available quantity!");
         return prev;
       }
     });
-  
-    try {
-      const { data } = await axios.put("http://localhost:5000/update-quantity", {
-        itemId: id,
-        quantity: 1, // Increase quantity by 1
-      });
-    
-      if (data.modifiedCount > 0) {
-        toast.success("Quantity updated!");
-        refetch(); // Refetch the data to reflect the updated quantity
-      } else {
-        toast.error("Failed to update quantity!");
-      }
-    } catch (error) {
-      // Log the error response for better insight
-      console.error("Error response:", error.response);
-      toast.error("Something went wrong while updating quantity.");
-    }
-    
+
   };
 
-  
   const handleDecrease = async (id) => {
     setQuantities((prev) => {
       const currentQuantity = prev[id] || 1;
       if (currentQuantity > 1) {
-        // Decrease quantity in state
         return { ...prev, [id]: currentQuantity - 1 };
       } else {
         toast.warning("Quantity can't be less than 1!");
         return prev;
       }
     });
-  
+
+  };
+
+  const handleQuantityUpdate = async () => {
     try {
-      const { data } = await axios.put("http://localhost:5000/update-quantity", {
-        itemId: id,
-        quantity: -1, // Decrease quantity by 1
-      });
-  
-      if (data.modifiedCount > 0) {
-        toast.success("Quantity updated!");
-        refetch(); // Refetch the data to reflect the updated quantity
-      } else {
-        toast.error("Failed to update quantity!");
-      }
+      const updatedCart = card.map((item) => ({
+        itemId: item._id,
+        quantity: quantities[item._id] || 1,
+      }));
+
+      const { data } = await axios.put(
+        "https://y-green-theta.vercel.app/update-quantity",
+        updatedCart
+      );
+
     } catch (error) {
-      toast.error("Something went wrong while updating quantity.");
-      console.error(error);
+      console.log("Something went wrong during quantity update.");
     }
   };
-  
-  
-
-  console.log(quantities);
-  // const handleQuantityUpdate = async () => {
-  //   try {
-  //     const updatedCart = card.map((item) => ({
-  //       itemId: item.itemId,
-  //       quantity: quantities[item._id] || 1,
-  //     }));
-
-  //     const { data } = await axios.put(
-  //       "http://localhost:5000/update-quantity",
-  //       updatedCart
-  //     );
-
-  //     if (data.modifiedCount > 0) {
-  //       toast.success("Payment successful! Quantities updated.");
-  //       refetch();
-        
-  //     } else {
-  //       toast.error("No items were updated. Check quantities.");
-  //     }
-  //   } catch (error) {
-  //     toast.error("Something went wrong during payment.");
-  //   }
-  // };
 
   return (
     <div className="p-4">
       <ToastContainer />
+      <Helmet>
+        <title>
+          MediCard | Card
+        </title>
+      </Helmet>
       <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
         <h2 className="text-xl md:text-2xl lg:text-4xl">Items: {card.length}</h2>
         <h2 className="text-xl md:text-2xl lg:text-4xl">
           Total Price: ${totalPrice.toFixed(2)}
         </h2>
-        {/* onClick={handlePayment} */}
         {card.length > 0 ? (
-          <Link  to="/dashboard/checkout">
-            <button className="btn btn-primary">Pay</button>
+          <Link to="/dashboard/checkout">
+            <button onClick={handleQuantityUpdate} className="btn btn-primary">
+              Pay
+            </button>
           </Link>
         ) : (
           <button disabled className="btn btn-primary">
@@ -163,7 +129,6 @@ const Card = () => {
 
       <div className="overflow-x-auto">
         <table className="table w-full">
-          {/* Head */}
           <thead>
             <tr>
               <th>#</th>
@@ -200,7 +165,7 @@ const Card = () => {
                     >
                       -
                     </button>
-                    <span>1</span>
+                    <span>{quantities[item._id] || 1}</span>
                     <button
                       onClick={() =>
                         handleIncrease(item._id, item.available_quantity)

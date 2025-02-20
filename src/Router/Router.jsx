@@ -25,6 +25,8 @@ import PaymentHistoryFUser from "../PaymentHistoryFUser";
 import PaymentManagementFseller from "../Pages/Seller/PaymentManagementFseller";
 import SalesReport from "../Pages/Adim/SalesReport";
 import PrivateRoute from "./PrivateRoute";
+import SellerHome from "../Pages/Seller/SellerHome";
+import AboutUs from "../Components/AboutUs";
 
 
 
@@ -42,6 +44,10 @@ export const router = createBrowserRouter([
         {
             path:'/shop',
             element:<PrivateRoute><Shop></Shop></PrivateRoute>
+        },
+        {
+          path:'/aboutus',
+          element:<AboutUs></AboutUs>
         },
         {
             path:'/login',
@@ -128,6 +134,10 @@ export const router = createBrowserRouter([
         {
           path:'paymentforseller',
           element:<PrivateRoute><SellerRoute><PaymentManagementFseller></PaymentManagementFseller></SellerRoute></PrivateRoute>
+        },
+        {
+          path:'sellerHome',
+          element:<PrivateRoute><SellerRoute><SellerHome></SellerHome></SellerRoute></PrivateRoute>
         },
         
       ]

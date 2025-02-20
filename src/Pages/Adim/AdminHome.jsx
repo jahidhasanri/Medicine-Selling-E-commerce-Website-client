@@ -7,6 +7,7 @@ import UseAxiosSecure from '../../hooks/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 const AdminHome = () => {
     const axiosSecure = UseAxiosSecure();
@@ -16,7 +17,7 @@ const AdminHome = () => {
     const { data: adminData = {}, isLoading } = useQuery({
         queryKey: ["adminhome"],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/adminhome');
+            const res = await axios.get('https://y-green-theta.vercel.app/adminhome');
             return res.data;
         },
     });
@@ -32,6 +33,11 @@ const AdminHome = () => {
 
     return (
         <div className="mt-12">
+            <Helmet>
+                <title>
+                MedCard | Admin Home
+                </title>
+            </Helmet>
             {/* Small cards */}
             <div className="mb-12 grid gap-y-10 gap-x-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {/* Total Revenue */}

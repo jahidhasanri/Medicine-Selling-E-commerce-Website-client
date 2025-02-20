@@ -3,6 +3,7 @@ import { AuthContext } from './Provider/AuthProvider';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 const PaymentHistoryFUser = () => {
   const { user } = useContext(AuthContext);
@@ -13,7 +14,7 @@ const PaymentHistoryFUser = () => {
     queryFn: async () => {
       try {
         if (user?.email) {
-          const response = await axios.get(`http://localhost:5000/userPayment/${user.email}`);
+          const response = await axios.get(`https://y-green-theta.vercel.app/userPayment/${user.email}`);
           return response.data;
         } else {
           toast.error('User email is not available');
@@ -39,6 +40,9 @@ const PaymentHistoryFUser = () => {
 
   return (
     <div className="container mx-auto mt-24 px-4">
+      <Helmet>
+        <title>MedCard | Payment History for user</title>
+      </Helmet>
       <h2 className="text-2xl font-semibold text-center mb-5">Payment History</h2>
       {payments.length === 0 ? (
         <p className="text-center text-gray-500">No payment history available.</p>

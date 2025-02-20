@@ -17,7 +17,7 @@ const AddCategorty = () => {
             categoryName: e.target.categoryName.value,
         }
         try {
-            const { data } = await axios.post("http://localhost:5000/category", itemData);
+            const { data } = await axios.post("https://y-green-theta.vercel.app/category", itemData);
           
             if (data) {
               toast.success("Category added successfully");
