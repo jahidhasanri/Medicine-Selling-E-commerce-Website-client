@@ -149,7 +149,7 @@ const Shop = () => {
 
   return (
     <div>
-      <div className="mt-20 container mx-auto">
+      <div className="mt-20 lg:mt-24 container mx-auto">
         <ToastContainer />
 
         <Helmet>
