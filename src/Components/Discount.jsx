@@ -20,7 +20,7 @@ const Discount = () => {
   return (
     <div className="bg-slate-200">
       <div className="mb-5">
-        <h2 className="text-2xl text-center font-bold p-5">Discount Products</h2>
+        <h2 className="text-2xl mb-3 text-center font-bold p-5">Discount Products</h2>
 
         {/* Swiper Slider */}
         <Swiper
