@@ -18,7 +18,7 @@ const Discount = () => {
   const discountedItems = items.filter(item => item.discount > 0);
 
   return (
-    <div className="bg-slate-200">
+    <div className="bg-slate-200 pb-10">
       <div className="mb-5">
         <h2 className="text-2xl mb-3 text-center font-bold p-5">Discount Products</h2>
 

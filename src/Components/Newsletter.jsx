@@ -16,7 +16,7 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="bg-slate-300 ">
+    <div className="bg-slate-100 mt-3">
     <div className=" container mx-auto text-white py-12 px-6 md:px-16 text-center">
       <h2 className="text-3xl font-bold mb-4 text-gray-600">Subscribe to Our Newsletter</h2>
       <p className="mb-6 text-lg text-gray-600">Get the latest updates, offers, and health tips delivered to your inbox.</p>
@@ -30,7 +30,7 @@ const Newsletter = () => {
         />
         <button
           type="submit"
-          className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition duration-300"
+          className="bg-blue-600  px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
         >
           Subscribe
         </button>
