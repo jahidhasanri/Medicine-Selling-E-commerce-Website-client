@@ -42,7 +42,7 @@ const Update = () => {
   };
 
   return (
-    <div className="mt-20">
+    <div className="mt-24">
       <ToastContainer />
       <Helmet><title>MedCard | Update profile</title></Helmet>
       <div className="card bg-base-100 w-full mt-5 max-w-sm shrink-0 shadow-2xl mx-auto">

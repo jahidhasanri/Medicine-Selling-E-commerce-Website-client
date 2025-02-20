@@ -219,13 +219,13 @@ const Dashboard = () => {
             <div className="flex justify-around gap-4">
               <button
                 onClick={handleSendRequest}
-                className="px-4 py-2 bg-red-500 text-white rounded-lg"
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg"
               >
                 Send Request
               </button>
               <button
                 onClick={closeModal}
-                className="px-4 py-2 bg-green-500 text-white rounded-lg"
+                className="px-4 py-2 bg-red-500 text-white rounded-lg"
               >
                 Cancel
               </button>
